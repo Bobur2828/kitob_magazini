@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{% include "includes/reklama.html" %}
+
+
+<section class="features28 cid-u3wTNHeNGB" id="features-28-u3wTNHeNGB">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-12 col-lg">
+                <div class="text-wrapper align-left">
+                    
+                    <h1 class="mbr-section-title mbr-fonts-style mb-4 display-2">
+                        <strong>{{book.name}}</strong>
+                    </h1>
+                    <p class="mbr-text align-left mbr-fonts-style mb-4 display-7">
+                        {{book.content}}
+                    </p>
+                    <ul class="details-list">
+                        <li><strong>Avtor:</strong> <a href="https://www.google.com/search?q={{book.avtor}}" target="_blank">{{book.avtor}}</a></li>
+
+                        <li><strong>Kategoriya:</strong> <a href="{% url 'cat' book.cat.slug %}">{{ book.cat }}</a></li>
+
+                        <li><strong>Qoshilgan Sana:</strong> {{book.print_date}}</li>
+                        <li><strong>Adabiyot turi:</strong> </li>
+                        {% for gr in book.literal.all %}  
+                            <ul>
+                                <!--  -->
+                                <li><a href="{% url 'group' gr.slug %}">
+                                    <strong>{{gr}}</strong>
+                                </li>
+                            </ul>
+                        {% endfor %}
+                    </ul>
+                    <a href="https://uzum.uz/uz/search?query={{book.name}}&needsCorrection=1" class="btn btn-primary">Sotib Olish</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-6 image-wrapper">
+                <img class="w-100" src="{{ book.photo.url }}">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock content %}

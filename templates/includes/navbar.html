@@ -1,0 +1,48 @@
+{% load static %}
+
+<section class="menu menu2 cid-u3wTNHduk7" once="menu" id="menu-5-u3wTNHduk7">
+    <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+      <div class="container">
+        <div class="navbar-brand">
+          <span class="navbar-logo">
+                      <a href="https://mobiri.se">
+                          <img src="{% static 'my_book/assets/images/photo-1495446815901-a7297e633e8d.jpeg' %}" style="height: 4.3rem;">
+                      </a>
+                  </span>
+                  <span class="navbar-caption-wrap">
+            <a class="navbar-caption text-black display-4" href="/">Libraire.UZ</a>
+          </span>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-bs-toggle="collapse" data-target="#navbarSupportedContent"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+            <li class="nav-item">
+              <a class="nav-link link text-black display-4" href="/">Bosh sahifa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link text-black display-4" href="{% url 'kitoblar' %}"
+                aria-expanded="false">Kitoblar ro'yxati </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link text-black display-4" href="{% url 'category' %}">Kategoriya</a>
+            </li>
+          </ul>
+          <div class="navbar-buttons mbr-section-btn">
+            <a class="btn btn-primary display-4" href="https://www.google.com/">Izlash</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </section>
+  

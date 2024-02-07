@@ -1,0 +1,621 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include "includes/navbar.html" %}
+
+<!-- Banner -->
+<section class="header16 cid-u3wTNHd7V3 mbr-fullscreen mbr-parallax-background" id="hero-17-u3wTNHd7V3">
+    {% with random_cat=category|random %}
+    <div class="mbr-overlay" style="opacity: 0.3; background-image: url('{{ random_cat.photo.url }}')"></div>
+    {% endwith %}
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-6">
+          </div>
+          <div class="content-wrap col-12 col-md-6">
+              <h1 class="mbr-section-title mbr-fonts-style mbr-white mb-4  display-1">
+                  <strong class="center text-black">Bir kitob — bir hayot</strong>
+              </h1>    
+              <p class="mbr-fonts-style mbr-text mbr-black mb-4 display-7">Hayotlarni bizning kitoblar bilan oching</p>
+              <div class="mbr-section-btn"><a class="btn btn-black-outline display-7" href="#">Bizning saytimiz orqali bilimga ega bo'ling </a></div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Gallerey slider -->
+  <section class="gallery4 cid-u3wTNHeBmR" id="gallery-12-u3wTNHeBmR">
+      <div class="container-fluid gallery-wrapper">
+          <div class="grid-container">
+              <div class="grid-container-1" style="transform: translate3d(-200px, 0px, 0px);">
+                  {% for cat in categorylar %}
+                  <div class="grid-item">
+                      <img src="{{ cat.photo.url }}" class="delayed-display">
+                  </div>
+                  {% endfor %}
+              </div>
+              <div class="grid-container-2" style="transform: translate3d(-70px, 0px, 0px);">
+                  {% for cat in category %}
+                  <div class="grid-item">
+                      <img src="{{ cat.photo.url }}" class="delayed-display">
+                  </div>
+                  {% endfor %}
+              </div>
+          </div>
+      </div>
+  </section>
+  
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          const images = document.querySelectorAll('.delayed-display');
+          let delay = 0;
+          images.forEach((image) => {
+              setTimeout(() => {
+                  image.style.opacity = 1;
+              }, delay);
+              delay += 200; // Delay between each image in milliseconds (200ms)
+          });
+      });
+  </script>
+  
+
+
+  <section class="features28 cid-u3wTNHeNGB" id="features-28-u3wTNHeNGB">
+      <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-12 col-md-12 col-lg">
+                  <div class="text-wrapper align-left">
+                      {% with random_cat=category|random %}
+                      <h1 class="mbr-section-title mbr-fonts-style mb-4 display-2">
+                          <strong>{{random_cat.name}}</strong>
+                      </h1>
+                      <p class="mbr-text align-left mbr-fonts-style mb-4 display-7">
+                          {{random_cat.content}}
+                      </p>
+                  </div>
+              </div>
+              <div class="col-12 col-md-12 col-lg-6 image-wrapper">
+                  <img class="w-100" src="{{ random_cat.photo.url }}">
+                      {% endwith %}
+              </div>
+          </div>
+          <div class="row row-reverse justify-content-center">
+              <div class="col-12 col-md-12 col-lg">
+                  <div class="text-wrapper align-left">
+                      <h1 class="mbr-section-title mbr-fonts-style mb-4 display-2">
+                          {% with random_cat=category|random %}
+                          <strong>{{random_cat.name}}</strong>
+                      </h1>
+                      <p class="mbr-text align-left mbr-fonts-style mb-4 display-7">
+                          {{random_cat.content}}
+                      </p>
+                  </div>
+              </div>
+              <div class="col-12 col-md-12 col-lg-6 image-wrapper">
+                  <img class="w-100" src="{{ random_cat.photo.url }}">
+                  {% endwith %}
+              </div>
+          </div>
+          <div class="row justify-content-center">
+              <div class="col-12 col-md-12 col-lg">
+                  <div class="text-wrapper align-left">
+                      {% with random_cat=category|random %}
+                      <h1 class="mbr-section-title mbr-fonts-style mb-4 display-2">
+                          <strong>{{random_cat.name}}</strong>
+                      </h1>
+                      <p class="mbr-text align-left mbr-fonts-style mb-4 display-7">
+                          {{random_cat.content}}
+                      </p>
+                  </div>
+              </div>
+              <div class="col-12 col-md-12 col-lg-6 image-wrapper">
+                  <img class="w-100" src="{{ random_cat.photo.url }}">
+                  {% endwith %}
+              </div>
+          </div>
+      </div>
+  </section>
+  
+<!-- Categoriya -->
+  <section class="features_17 mbr-embla cid-u3wTNHed7H" id="features-17-u3wTNHed7H">
+      <div class="position-relative">
+          <div class="container-fluid">
+              <div class="row justify-content-center">
+                  <div class="col-12 content-head">
+                      <div class="mbr-section-head mb-5">
+                          <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                              <strong>Kitob Janrlari</strong>
+                          </h4>
+                          <h5 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-4 display-7">So'zlar va hikoyalar dunyosida yo'lingizni tanlang</h5>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="embla" data-skip-snaps="true" data-align="center" data-contain-scroll="trimSnaps" data-auto-play-interval="5" data-draggable="true">
+              <div class="embla__viewport container-fluid">
+                  <div class="embla__container">
+                      {% for cat in category %}
+                      <div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
+                          <div class="slide-content">
+                              <div class="item-img">
+                                  <div class="item-wrapper">
+                                      <img src="{{ cat.photo.url }}" data-slide-to="1" data-bs-slide-to="1">
+                                  </div>
+                              </div>
+                              <div class="item-content">
+                                  <h5 class="item-title mbr-fonts-style display-5">
+                                      <strong>{{ cat.name }}</strong>
+                                  </h5>
+                                  <p class="mbr-text mbr-fonts-style mt-3 display-7">{{ cat.content }}</p>
+                              </div>
+                              <div class="mbr-section-btn item-footer mt-2"><a href="{% url 'janr' cat.slug %}" class="btn item-btn btn-primary display-7" target="_blank">Batafsil</a></div>
+                          </div>
+                      </div>
+                      {% endfor %}
+                  </div>
+              </div>
+              <button class="embla__button embla__button--prev">
+                  <span class="mobi-mbri mobi-mbri-arrow-prev mbr-iconfont" aria-hidden="true"></span>
+                  <span class="sr-only visually-hidden visually-hidden visually-hidden">Previous</span>
+              </button>
+              <button class="embla__button embla__button--next">
+                  <span class="mobi-mbri mobi-mbri-arrow-next mbr-iconfont" aria-hidden="true"></span>
+                  <span class="sr-only visually-hidden visually-hidden visually-hidden">Next</span>
+              </button>
+          </div>
+      </div>
+  </section>
+  
+  <section class="features03 cid-u3wTNHf6qB" id="news-1-u3wTNHf6qB">
+    <div class="container-fluid">
+        <div class="row justify-content-center mb-5">
+            <div class="col-12 content-head">
+                <div class="mbr-section-head">
+                    <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                        <strong>Yangi Nashrlar</strong>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            {% for book in booklar %}
+            <div class="item features-image col-12 col-md-6 col-lg-3">
+                <div class="item-wrapper">
+                    <div class="item-img mb-3">
+                        <img src="{{ book.photo.url }}">
+                    </div>
+                    <div class="item-content align-left">
+                        <h6 class="item-subtitle mbr-fonts-style mb-3 display-5">
+                            <strong><a class="text-black fw-bold" href="#">{{ book.name }}</a></strong>
+                        
+                        </h6>
+                        <p class="mbr-text mbr-fonts-style mb-3 display-7"><a href="https://www.google.com/search?q={{kitob.avtor}}" target="_blank">{{book.avtor}}</a></p>
+
+                        <p class="mbr-text mbr-fonts-style mb-3 display-7"><p>{{ book.print_date }}</p>
+                        <p class="mbr-text mbr-fonts-style mb-3 display-7">Janr: <a href="{% url 'cat' book.cat.slug %}">{{ book.cat }}</a>.</p>
+
+                        <p class="mbr-text mbr-fonts-style mb-3 display-7">Adabiyot turi:</p>
+                        <ul>
+                            {% for gr in book.literal.all %}
+                            <li><a href="{% url 'group' gr.slug %}">
+                                <strong>{{ gr }}</strong>
+                            </a></li>
+                            {% endfor %}
+                        </ul>
+                        <div class="mbr-section-btn item-footer"><a href="{% url 'sotuv' book.slug %}" class="btn item-btn btn-primary display-7">Batafsil</a></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Catalog views -->
+  <section class="features035 cid-u3wTNHfSc1" id="call-to-action-11-u3wTNHfSc1">
+      <div class="container">
+          <div class="row">
+              <div class="col-12 col-lg-9 active">
+                  <div class="item-wrapper">
+                      <div class="card-box">
+                          <h4 class="card-text mbr-fonts-style display-7">
+                              Eng mashhur kitoblar sizni kutmoqda! Arzon narxda sotib olishga vaqt toping!
+                          </h4>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-12 col-lg-3 active">
+                  <div class="mbr-section-btn">
+                      <a class="btn btn-primary display-7" href="{% url 'category' %}">
+                          Katalogga qarang
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+<!-- Otzivlar -->
+  <section class="people02 cid-u3wTNHgms0" id="testimonials-2-u3wTNHgms0">
+      <div class="container">
+          <div class="row mb-5 justify-content-center">
+              <div class="col-12 content-head">
+                  <h3 class="mbr-section-title mbr-fonts-style align-center mb-4 display-2">
+                      <strong>Mijozlarimiz fikrlari</strong>
+                  </h3>
+              </div>
+          </div>
+          
+          <div class="row">
+              <div class="row">
+                  {% for izoh in izohlar %}
+                  <div class="item features-without-image col-12 col-md-6 col-lg-4 mb-5">
+                      <div class="item-wrapper">
+                          <div class="card-box align-center">
+                              <div class="iconfont-wrapper mb-3">
+                                  <span class="mbr-iconfont mobi-mbri-star mobi-mbri"></span>
+                                  <span class="mbr-iconfont mobi-mbri-star mobi-mbri"></span>
+                                  <span class="mbr-iconfont mobi-mbri-star mobi-mbri"></span>
+                                  <span class="mbr-iconfont mobi-mbri-star mobi-mbri"></span>
+                                  <span class="mbr-iconfont mobi-mbri-star mobi-mbri"></span>
+                              </div>
+                              <h5 class="card-title mbr-fonts-style mb-3 display-7">{{ izoh.content }}</h5>
+                              <p class="card-text mbr-fonts-style mb-0 display-7">{{ izoh.name }}</p>
+                          </div>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+              
+          <div class="row mt-0 mt-md-5">
+          
+          </div>
+       
+      </div>
+  </section>
+<!-- Statiyalar -->
+  <section data-bs-version="5.1" class="article14 cid-u3wTNHgFYF" id="generic-text-11-u3wTNHgFYF">
+      <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-md-12 col-lg-10">
+                  {% with random_st=status|random %}
+                      <h3 class="mbr-section-title mbr-fonts-style display-2">
+                      <strong>&quot;{{random_st.content}}&quot;</strong>
+                      </h3>
+                        <p class="mbr-section-subtitle mbr-fonts-style mt-4 display-7">
+                            <a href="https://www.google.com/search?q={{ random_st.name }}" target="_blank">{{ random_st.name }}</a>
+                        </p>
+                    
+                  {% endwith %}
+              </div>
+          </div>
+      </div>
+  </section>
+  
+<!-- Yangiliklar -->
+  <section class="blog-2 cid-u3wTNHgl2x" id="blog-2-u3wTNHgl2x">
+      <div class="container-fluid">
+          <div class="row justify-content-center mb-5">
+              <div class="col-12 content-head">
+                  <div class="mbr-section-head">
+                      <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                          <strong>Eng ommabop kitoblar</strong>
+                      </h4>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              {% for kt in kitob %}
+              <div class="item features-image col-12 col-md-6 col-lg-3 active">
+                  <div class="item-wrapper">
+                      <div class="item-img mb-3">
+                          <img src="{{ kt.photo.url }}">
+                      </div>
+                      <div class="item-content align-left">
+                            <h5 class="item-title mbr-fonts-style mt-0 mb-3 display-7">
+                                <a href="https://www.google.com/search?q={{kt.avtor}}" target="_blank">{{kt.avtor}}</a>
+                             </h5>
+                        
+                          <h6 class="item-subtitle mbr-fonts-style mb-3 display-5">
+                              <strong>{{ kt.name}}</strong>
+                          </h6>
+  
+                          <div class="mbr-section-btn item-footer">
+                              <a href="{% url 'sotuv' kt.slug %}" class="btn item-btn btn-primary display-7">
+                                  Batafsil
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+              
+              
+          </div>
+      </div>
+  </section>
+
+<!-- Reklama -->
+  <section class="gallery10 cid-u3wTNHhzFF" id="features-69-u3wTNHhzFF">
+      <div class="container-fluid">
+          <div class="loop-container">
+            <div class="item display-1" data-linewords="
+              Barcha yoshdagilar uchun qiziqarli kitoblar *
+              Bepul yetkizib berish xizmat *" 
+            data-direction="-1" data-speed="0.05">
+            </div>
+            <div class="item display-1" data-linewords="
+              Barcha yoshdagilar uchun qiziqarli kitoblar *
+              Bepul yetkizib berish xizmat *" 
+            data-direction="-1" data-speed="0.05">
+            </div>
+          </div>   
+      </div>
+    </section>
+
+
+<!-- Obunalar -->
+
+    <section class="header2 cid-u3wTNHhqsO" id="subscription-form-1-u3wTNHhqsO">
+        <div class="container">
+          <div class="row content-wrapper justify-content-center">
+            <div class="col-lg-8 mbr-form">
+              <div class="">
+                <h1 class="mbr-section-title mbr-fonts-style mb-5 display-1">
+                  <strong>Yangiliklardan xabardor bo'ling</strong>
+                </h1>
+              </div>
+              <div class="text-wrapper align-left" data-form-type="formoid">
+                <form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="">
+                  <div class="row">
+                    <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling out the form!</div>
+                    <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
+                      Oops...! some problem!
+                    </div>
+                  </div>
+                  <div class="dragArea row">
+                    <div data-for="email" class="col-lg-6 col-md-6 col-sm-12 form-group">
+                      <input type="email" name="email" placeholder="test@email.com" data-form-field="email" class="form-control display-7" value="" id="email-header02-0">
+                    </div>
+                    <div class="col-auto mbr-section-btn"><button type="submit" class="w-100 btn btn-primary display-7">Obuna bo'lish</button></div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <style>
+        .cid-u3wTNHh18P {
+          overflow: hidden;
+          background-image: url("{% static 'my_book/assets/images/photo-1610116306796-6fea9f4fae38.jpeg' %}");
+        }
+        </style>
+        <section class="image02 cid-u3wTNHh18P mbr-fullscreen mbr-parallax-background" id="image-13-u3wTNHh18P">
+            <div class="container">
+                <div class="row"></div>
+            </div>
+        </section>
+            <style>
+        
+        </style>
+        <section class="pricing3 cid-u3wTNHhsZR" id="product-list-6-u3wTNHhsZR">
+          <div class="container-fluid">
+            <div class="row justify-content-center">
+              <div class="col-12 content-head">
+                <div class="mbr-section-head mb-5">
+                  <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                    <strong>Obuna Tariflari</strong>
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                {% for item in obuna %}
+                <div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb active">
+                    <div class="item-wrapper">
+                        <div class="item-head">
+                            <h5 class="item-title mbr-fonts-style mb-0 display-5">
+                                <strong>{{ item.name }}</strong>
+                            </h5>
+                            <h6 class="item-subtitle mbr-fonts-style mb-0 display-7">
+                                <strong>{{ item.price }}</strong>
+                            </h6>
+                        </div>
+                        <div class="item-content">
+                            <p class="mbr-text mbr-fonts-style display-7">
+                                {{ item.content }}
+                            </p>
+                            <div class="mb-4">
+                            </div>
+                            <div class="counter-container mbr-text mbr-fonts-style display-7">
+                                <ul>
+                                    <li>{{ item.content1 }}</li>
+                                    <li>{{ item.content2 }}</li>
+                                    <li>{{ item.content3 }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+                  
+                  </div>
+                  <div class="mbr-section-btn item-footer">
+                    <a href="" class="btn item-btn btn-primary display-7">Sotib olish</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      
+      
+
+
+<!-- Ijtimoiy tarmoq -->
+ 
+  <section class="header18 cid-u3wTNHics9 mbr-fullscreen" data-bg-video="https://www.youtube.com/embed/8O2Uw1hii_E?autoplay&#x3D;1&amp;loop&#x3D;1&amp;playlist&#x3D;8O2Uw1hii_E&amp;t&#x3D;20&amp;mute&#x3D;1&amp;playsinline&#x3D;1&amp;controls&#x3D;0&amp;showinfo&#x3D;0&amp;autohide&#x3D;1&amp;allowfullscreen&#x3D;true&amp;mode&#x3D;transparent" id="video-5-u3wTNHics9">
+      <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(0, 0, 0);"></div>
+      <div class="container-fluid">
+        <div class="row">
+        </div>
+      </div>
+    </section>
+        <style>
+    
+    </style>
+    <section class="social05 cid-u3wTNHiy6w" id="follow-us-2-u3wTNHiy6w">
+        <div class="container">
+            <div class="row">
+                <h3 class="mbr-section-title align-center mb-5 mbr-fonts-style display-2">
+                    <strong>Bizni ijtimoiy tarmoqlarda kuzating</strong>
+                </h3>
+                <div class="col-12">
+                    <div class="social-row">
+                        <div class="soc-item">
+                            <a href="#" target="_blank">
+                                <span class="mbr-iconfont socicon socicon-facebook"></span>
+                            </a>
+                        </div>
+                        <div class="soc-item">
+                            <a href="#" target="_blank">
+                                <span class="mbr-iconfont socicon-twitter socicon"></span>
+                            </a>
+                        </div>
+                        <div class="soc-item">
+                            <a href="#" target="_blank">
+                                <span class="mbr-iconfont socicon-instagram socicon"></span>
+                            </a>
+                        </div>
+                        <div class="soc-item">
+                            <a href="#" target="_blank">
+                                <span class="mbr-iconfont socicon socicon-linkedin"></span>
+                            </a>
+                        </div>
+                        <div class="soc-item">
+                            <a href="#" target="_blank">
+                                <span class="mbr-iconfont socicon socicon-twitch"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- izlash -->
+    <section class="form5 cid-u3wTNHiDLJ" id="contact-form-2-u3wTNHiDLJ">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 content-head">
+                    <div class="mbr-section-head mb-5">
+                        <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                            <strong>Keyingi kitobingizni toping</strong>
+                        </h3>                    
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
+                    <form action="#" method="POST" class="mbr-form form-with-styler" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="">
+                        <div class="row">
+                            <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling out the form!</div>
+                            <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
+                                Oops...! some problem!
+                            </div>
+                        </div>
+                        <div class="dragArea row">
+                            <div class="col-md col-sm-12 form-group mb-3" data-for="name">
+                                <input type="text" name="name" placeholder="Ismingizni kiriting" data-form-field="name" class="form-control" value="" id="name-form02-0">
+                            </div>
+                            <div class="col-md col-sm-12 form-group mb-3" data-for="email">
+                                <input type="email" name="email" placeholder="Email kiriting" data-form-field="email" class="form-control" value="" id="email-form02-0">
+                            </div>
+                            <div class="col-12 form-group mb-3" data-for="textarea">
+                                <textarea name="textarea" placeholder="Xabar kiriting" data-form-field="textarea" class="form-control" id="textarea-form02-0"></textarea>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn"><button type="submit" class="btn btn-primary display-7">Yuborish</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Aloqa -->
+    {% load static %}
+    <section class="contacts01 cid-u3wTNHiZyM" id="contacts-1-u3wTNHiZyM">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 content-head">
+                    <div class="mbr-section-head mb-5">
+                        <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                            <strong>Biz bilan bog'lanish</strong>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="item features-without-image col-12 col-md-6 active">
+                    <div class="item-wrapper">
+                        <div class="text-wrapper">
+                            <h6 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>Telefon</strong>
+                            </h6>
+                            <p class="mbr-text mbr-fonts-style display-7">
+                                <a href="tel:+998916624222" class="text-black">+998 91 662 42 22</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item features-without-image col-12 col-md-6">
+                    <div class="item-wrapper">
+                        <div class="text-wrapper">
+                            <h6 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>Email</strong>
+                            </h6>
+                            <p class="mbr-text mbr-fonts-style display-7">
+                                <a href="mailto:info@bookstore.com" class="text-black">farmusic@inbox.ru</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item features-without-image col-12 col-md-6">
+                    <div class="item-wrapper">
+                        <div class="text-wrapper">
+                            <h6 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>Manzil</strong>
+                            </h6>
+                            <p class="mbr-text mbr-fonts-style display-7">
+                                 Farg'ona shaxri Sayilgoh ko'chasi 55-uy
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item features-without-image col-12 col-md-6">
+                    <div class="item-wrapper">
+                        <div class="text-wrapper">
+                            <h6 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>Ish Vaqti</strong>
+                            </h6>
+                            <p class="mbr-text mbr-fonts-style display-7">
+                                Dushanba-Juma: 9:00 - 18:00
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% include "includes/navbar.html" %}
+{% load static %}
+
+<section class="features28 cid-u3wTNHeNGB" id="features-28-u3wTNHeNGB">
+    <div class="container-fluid">
+		<div class="row justify-content-center mb-5">
+			<div class="col-12 content-head">
+				<div class="mbr-section-head">
+					<h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+						<strong>{{page}}</strong>
+					</h3>
+				</div>
+			</div>
+		</div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-12 col-lg">
+                <div class="text-wrapper align-left">
+                    
+                    <h1 class="mbr-section-title mbr-fonts-style mb-4 display-2">
+                        <strong>{{janr1.name}}</strong>
+                    </h1>
+                    <p class="mbr-text align-left mbr-fonts-style mb-4 display-7">
+                        {{janr1.content}}
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-6 image-wrapper">
+                <img class="w-100" src="{{ janr1.photo.url }}">
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <a href="{% url 'cat' janr1.slug %}" class="btn btn-primary">{{ janr1.name }} kategoriyasi bo'yicha Ko'rish</a>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock content %}
