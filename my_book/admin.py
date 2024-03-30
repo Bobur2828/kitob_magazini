@@ -1,7 +1,11 @@
 from django.contrib import admin
-from .models import Book,Category,Izoh,Status,Obuna,Country
+from .models import *
 
 
+@admin.register(Users)
+
+class Usersadmin(admin.ModelAdmin):
+    list_display = ('id','username', 'first_name', 'is_client' )
 
 @admin.register(Book)
 class ookAdmin(admin.ModelAdmin):

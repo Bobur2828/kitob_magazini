@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 
-from .models import Book,Izoh,Status,Obuna,Category,Country
+from .models import Book,Izoh,Status,Obuna,Category,Country, Users
+import requests
 
 
 def index(request):
@@ -97,7 +98,88 @@ def cat(request, cat_slug):
     return render(request, 'my_book/show_category1.html', context=data)
 
 
+def Login(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
 
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+        else:
+            return redirect('/')
+    else:
+
+        return render(request, 'login/login.html')
+
+
+def Register(request):
+    if request.method == 'POST':
+        r = request.POST
+        username = r['username']
+        password = r['password']
+        ism = r['ism']
+        fam = r['fam']
+        phone = r['phone']
+        birthday = r['birthday']
+        address = r['address']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            return redirect('/login/')
+        else:
+            user = Users.objects.create(username=username, password=password, first_name=ism, last_name=fam,
+                                        phone=phone, birthday=birthday, address=address)
+            login(request, user)
+            return redirect('/yuklash/')
+
+    else:
+        return render(request, 'login/register.html')
+
+
+def Yuklash(request):
+    context = {
+        'category': Category.objects.all(),
+        'davlat': Country.objects.all()
+    }
+    if request.method == "POST":
+        r = request.POST
+        f = request.FILES
+
+        category = r['category']
+        photo = f['photo']
+        name = r['name']
+        avtor = r['avtor']
+        content = r['content']
+        print_date = r['print_date']
+        literal = r['literal']
+        pdf = f['pdf']
+        slug = r['slug']
+
+        Book.objects.create(cat_id=category, name=name, photo=photo, pdf=pdf, slug=slug, avtor=avtor, content=content,
+                            print_date=print_date, literal_id=literal)
+
+        return redirect('/')
+    else:
+        return render(request, 'login/yuklash.html', context)
+
+
+def Logout(request):
+    logout(request)
+    return redirect('/login/')
+
+
+def SendMsg(request):
+    name = request.POST['name']
+    email = request.POST['email']
+    message = request.POST['message']
+
+    bot_token = '6437135033:AAHvK59HsWn_ZzDtCvNRfwARTkGQ8pRUTa0'
+    text = 'Saytdan xabar: \n\nIsmi : ' + name + '\nemail : ' + email + '\nxabar : ' + message
+    url = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id='
+    requests.get(url + '6516071223' + '&text=' + text)
+
+    return redirect('/')
 
 
 

@@ -3,18 +3,37 @@ from django.db import models
 
 
 # Kitoblar uchun 
+class Users(models.Model):
+    username = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    password = models.CharField(max_length=30, null=True, blank=True)
+    birthday = models.DateField(null=True, blank=True)
+    phone = models.CharField(max_length=255, null=True, blank=True)
+    is_client = models.BooleanField(default=True)
+    address = models.CharField(max_length=255, null=True, blank=True)
+    photo = models.ImageField(null=True, blank=True, upload_to='users')
+
+    def __str__(self):
+        return self.username
+
+
+# Kitoblar uchun
 class Book(models.Model):
-    name = models.CharField(max_length=255)              
+    name = models.CharField(max_length=255)
     content = models.TextField(max_length=1000)
     avtor = models.CharField(max_length=255)
     slug = models.SlugField(max_length=20, unique=True, db_index=True)
-    photo=models.ImageField(upload_to='photos/%Y/%m/%d', blank=True, default=None,null=True, verbose_name='Profile_photo')
-    print_date = models.DateField(null=True, blank=True) 
+    photo = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True, default=None, null=True,
+                              verbose_name='Profile_photo')
+    print_date = models.DateField(null=True, blank=True)
+    pdf = models.FileField(null=True, blank=True, upload_to='product')
     data_created = models.DateTimeField(auto_now_add=True)
     data_updated = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
     cat = models.ForeignKey('Category', on_delete=models.PROTECT, related_name='books')
-    literal=models.ManyToManyField('Country', blank=True, related_name='literal')
+    literal = models.ForeignKey('Country', null=True, blank=True, on_delete=models.PROTECT, related_name='literal')
+
     def __str__(self):
         return self.name
 
